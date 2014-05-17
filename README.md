@@ -18,6 +18,7 @@ The purpose of this assignment is to get started in Crawler4J with Scala.
 
 ## Resources
 
+- [JSoup CSS Selector Syntax](http://jsoup.org/cookbook/extracting-data/selector-syntax)
 - [Crawler4J Source Code](http://code.google.com/p/crawler4j/source/browse/)
 - [Proxy Server](http://en.wikipedia.org/wiki/Proxy_server)
 - http://computer.howstuffworks.com/firewall4.htm
