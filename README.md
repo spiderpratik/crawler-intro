@@ -29,4 +29,5 @@ The purpose of this assignment is to get started in Crawler4J with Scala.
 - [document.querySelector](https://developer.mozilla.org/en-US/docs/Web/API/document.querySelector)
 - [W3 Selector Draft](http://www.w3.org/TR/selectors-api/)
 - [30 Selectors you need to know](http://code.tutsplus.com/tutorials/the-30-css-selectors-you-must-memorize--net-16048)
-- 
+
+
