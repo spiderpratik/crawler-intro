@@ -2,14 +2,17 @@ package com.indix.bootcamp.crawler
 
 import edu.uci.ics.crawler4j.crawler.{Page, WebCrawler}
 import edu.uci.ics.crawler4j.parser.HtmlParseData
-import com.indix.bootcamp.parser.{Parser, FlipkartParser}
+import com.indix.bootcamp.parser.{Parser, FlipkartParser, JabongParser}
 import java.io.{PrintWriter, File}
 import scala.util.Random
 import edu.uci.ics.crawler4j.url.WebURL
+import com.indix.bootcamp.models.Price
 
 abstract class BaseCrawler extends WebCrawler {
   val parser: Parser
-  val writer = new PrintWriter(new File("/tmp/crawler4j-scala/results-" + Random.nextInt(Int.MaxValue) + ".csv"))
+  val filename = "results-" + Random.nextInt(Int.MaxValue) + ".csv"
+  println("File Name : " +  filename)
+  val writer = new PrintWriter(new File("/tmp/crawler4j-scala/" + filename))
 
   /*
     TODO: By default the crawler extracts urls from all the tags like link, script, embed, img, a etc.
@@ -19,7 +22,7 @@ abstract class BaseCrawler extends WebCrawler {
       An example is provided for reference.
    */
   def excludeFilters = List(
-    "(?i)(.*(\\.(pdf|flv))(\\?.*)*)$"
+    "(?i)(.*(\\.(pdf|flv|css|js|tar|gz|mp4))(\\?.*)*)$"
   )
 
   override def shouldVisit(url: WebURL): Boolean = {
@@ -32,9 +35,12 @@ abstract class BaseCrawler extends WebCrawler {
     page.getParseData match {
       case data: HtmlParseData =>
         val result = parser.parse(data.getHtml, page.getWebURL.getURL)
-        println(s"Parsed successfully as ${result}")
-        writer.append(result.toCsv)
-        writer.append("\n")
+        //if (result.isValidProductPage) {
+          println(s"Parsed successfully as $result")
+          writer.append(result.toCsv)
+          writer.append("\n")
+          writer.flush()
+        //}
     }
   }
 
@@ -45,4 +51,8 @@ abstract class BaseCrawler extends WebCrawler {
 
 class FlipkartCrawler extends BaseCrawler {
   override val parser: Parser = new FlipkartParser
+}
+
+class JabongCrawler extends BaseCrawler {
+    override val parser: Parser = new JabongParser
 }

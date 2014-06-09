@@ -18,3 +18,4 @@ trait Parser {
     Result(product, price)
   }
 }
+

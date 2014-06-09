@@ -1,7 +1,6 @@
 package com.indix.bootcamp.utils
 
 object Utils {
-
   def Managed[R](block: => R): Option[R] = {
     try {
       Option(block)
@@ -9,5 +8,4 @@ object Utils {
       case e: Exception => None
     }
   }
-
 }

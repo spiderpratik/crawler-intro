@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<cruise xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="cruise-config.xsd" schemaVersion="72">
+  <server artifactsdir="artifacts" commandRepositoryLocation="default" serverId="6f38b0f1-59d9-4f90-8aa3-a52d4d0011f7" />
+  <pipelines group="defaultGroup">
+    <pipeline name="crawler_assignment" isLocked="false">
+      <materials>
+        <git url="https://github.com/spiderpratik/crawler-intro.git" branch="CI_assign" />
+      </materials>
+      <stage name="test">
+        <jobs>
+          <job name="runtest">
+            <tasks>
+              <exec command="mvn">
+                <arg>test</arg>
+              </exec>
+            </tasks>
+          </job>
+        </jobs>
+      </stage>
+      <stage name="generate-artifacts">
+        <jobs>
+          <job name="create_JAR">
+            <tasks>
+              <exec command="mvn">
+                <arg>clean</arg>
+                <arg>package</arg>
+              </exec>
+            </tasks>
+          </job>
+        </jobs>
+      </stage>
+    </pipeline>
+  </pipelines>
+  <agents>
+    <agent hostname="india-desktop" ipaddress="172.16.1.66" uuid="b03064c0-2134-4979-ae78-35e9e9c8e771" />
+  </agents>
+</cruise>
+

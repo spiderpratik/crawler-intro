@@ -14,3 +14,4 @@ trait TestUtils { me =>
     Jsoup.parse(readFile(filename))
   }
 }
+

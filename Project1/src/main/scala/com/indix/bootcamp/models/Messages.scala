@@ -13,3 +13,4 @@ case class Result(product: Option[Product], price: Option[Price]) {
 
   def toCsv = s"${product.map(_.toCsv).getOrElse(",,")},${price.map(_.toCsv).getOrElse(",")}"
 }
+
